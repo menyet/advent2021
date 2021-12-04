@@ -8,6 +8,65 @@ fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
     ex01("data\\01.txt")
     ex01Part2("data\\01.txt")
+    day02();
+    day02Part2()
+}
+
+fun day02() {
+    var depth = 0;
+    var position = 0;
+
+    val file = File("data\\02.txt");
+
+    var lines = file.readLines();
+
+    lines.forEach() {
+        val params = it.split(' ')
+
+        when (params[0]) {
+            "forward" -> position += params[1].toInt()
+            "down" -> depth += params[1].toInt()
+            "up" -> depth -= params[1].toInt()
+        }
+    };
+
+    println("Quest 02/1: ${position * depth}");
+}
+
+fun day02Part2() {
+    var depth = 0;
+    var position = 0;
+    var aim = 0;
+
+    val file = File("data\\02.txt");
+
+    var lines = file.readLines();
+
+    //lines = listOf("forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2")
+
+    lines.forEach() {
+        val params = it.split(' ')
+
+        var units = params[1].toInt()
+
+        when (params[0]) {
+            "forward" -> {
+                position += units
+                depth += units * aim
+            }
+            "down" -> {
+                //depth += units
+                aim += units
+            }
+            "up" -> {
+                //depth -= params[1].toInt()
+                aim -= units
+            }
+        }
+    }
+
+
+    println("Quest 02/2: ${position * depth}");
 }
 
 fun ex01(fileName: String) {
